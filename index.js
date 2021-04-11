@@ -38,7 +38,7 @@ function createGrid(size) {
 
 // Check for valid size
 function checkSize(size) {
-	if (typeof size !== 'number' || size <= 0 || size >= 60) {
+	if (typeof size !== 'number' || size <= 0 || size > 60) {
 		size = Math.floor(Math.random() * 60);
 		sizeInput.value = `${size}`;
 	}
@@ -76,7 +76,6 @@ eraserButton.addEventListener('click', () => {
 
 // Check for size changes
 changeBtn.addEventListener('click', () => {
-	console.log(gridBlocks.length);
 	let size = parseInt(sizeInput.value);
 	checkSize(size);
 });
