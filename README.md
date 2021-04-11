@@ -1,4 +1,4 @@
 # The Odin Project
 # Etch-A-Sketch
 
-- Soon 
+Live Preview: https://lesedow.github.io/etch-a-sketch/
