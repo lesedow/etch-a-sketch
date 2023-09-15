@@ -1,9 +1,9 @@
 const gridContainer = document.getElementById('grid-container');
 const root = document.documentElement;
+let mouseDown = false;
 
 let gridContainerSize = getComputedStyle(root).getPropertyValue('--grid-size');
 gridContainerSize = parseInt(gridContainerSize.slice(0, gridContainerSize.length - 2));
-console.log(gridContainerSize)
 
 function generateGrid (gridSize) {
     const blockSize = gridContainerSize / gridSize;
@@ -15,5 +15,23 @@ function generateGrid (gridSize) {
         gridContainer.appendChild(gridBlock);
     }
 }
+
+function draw (event) {
+    if (!mouseDown) return;
+    event.target.style.backgroundColor = 'black'
+}
+
+function isGridBlock (target) {
+    return target.classList.contains('grid-block');
+}
+
+gridContainer.addEventListener('mousedown', (event) => {
+    mouseDown = true
+    draw(event)
+});
+gridContainer.addEventListener('mouseup', () => mouseDown = false);
+gridContainer.addEventListener('mouseover', draw);
+
+
 
 generateGrid(16);
