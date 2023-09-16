@@ -15,9 +15,10 @@ html {
 body {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
 }
 
 .grid-container {
@@ -25,8 +26,27 @@ body {
     height: var(--grid-size);
     display: flex;
     flex-wrap: wrap;
+    user-select: none;
 }
 
 .grid-block {
-    border: 1px solid black;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.grid-block:hover {
+    background-color: black;
+}
+
+.settings {
+    height: var(--grid-size);
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.size-range {
+    display: flex;
+    flex-direction: column;
 }
