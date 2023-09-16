@@ -6,8 +6,9 @@ const toggleGridButton = document.getElementById('toggle-grid');
 const rainbowModeButton = document.getElementById('toggle-rainbow');
 
 let mouseDown = false;
-let selectedColor = getComputedStyle(root).getPropertyValue('--selected-color');;
+let selectedColor = getComputedStyle(root).getPropertyValue('--selected-color');
 let gridToggled = true;
+let rainbowMode = false;
 
 let gridContainerSize = getComputedStyle(root).getPropertyValue('--grid-size');
 gridContainerSize = parseInt(gridContainerSize.slice(0, gridContainerSize.length - 2));
@@ -17,6 +18,10 @@ function generateGrid (gridSize) {
     for (let i = 0; i < gridSize * gridSize; i++) {
         createTile(blockSize);
     }
+}
+
+function randomNumber (n) {
+    return Math.floor(Math.random() * n);
 }
 
 function createTile (size) {
@@ -33,6 +38,11 @@ function createTile (size) {
 
 function draw (event) {
     if (!mouseDown) return;
+    if (rainbowMode) {
+        selectedColor = `rgb(${randomNumber(256)}, ${randomNumber(256)}, ${randomNumber(256)})`;
+    } else {
+        selectedColor = colorPicker.value;
+    }
     event.target.style.setProperty('--tile-color', selectedColor);
 }
 
@@ -83,6 +93,15 @@ function toggleGrid () {
     }); 
 }
 
+function toggleRainbowMode () {
+    if (rainbowMode) {
+        rainbowMode = false;
+    } else {
+        rainbowMode = true;
+    }   
+    rainbowModeButton.classList.toggle('toggled');
+}
+
 gridContainer.addEventListener('mousedown', (event) => {
     mouseDown = true
     draw(event)
@@ -92,5 +111,6 @@ gridContainer.addEventListener('mouseover', draw);
 sizeRange.addEventListener('change', changeGridSize)
 colorPicker.addEventListener('change', changeCurrentColor);
 toggleGridButton.addEventListener('click', toggleGrid);
+rainbowModeButton.addEventListener('click', toggleRainbowMode);
 
 generateGrid(sizeRange.value);
