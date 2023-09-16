@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
 html {
     box-sizing: border-box;
 }
@@ -6,10 +8,12 @@ html {
     box-sizing: inherit;
     margin: 0;
     padding: 0;
+    font-family: 'Poppins', sans-serif;
 }
 
 :root {
     --grid-size: 600px;
+    --selected-color: #000;
 }
 
 body {
@@ -19,9 +23,10 @@ body {
     align-items: center;
     gap: 24px;
     padding: 24px;
+    overflow: hidden;
 }
 
-.grid-container {
+.grid {
     width: var(--grid-size);
     height: var(--grid-size);
     display: flex;
@@ -30,23 +35,52 @@ body {
 }
 
 .grid-block {
+    --tile-color: #fff;
+    background-color: var(--tile-color);
+}
+
+.grid-container {
+    padding: 12px;
+    background-color: #fcfcfc;
+}
+
+.grid-block:hover {
+    background-color: var(--selected-color);
+}
+
+.show-grid {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     border-left: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.grid-block:hover {
-    background-color: black;
-}
-
 .settings {
     height: var(--grid-size);
-    flex: 1;
+    width: 400px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .size-range {
     display: flex;
     flex-direction: column;
+}
+
+button {
+    border: 2px solid #15d147;
+    padding: 12px 24px;
+    cursor: pointer;
+    background-color: white;
+    color: #15d147;
+    transition: color 0.5s, background-color 0.5s;
+}
+
+.toggled {
+    background-color: #15d147;
+    color: white;
+}
+
+input[type="range"] {
+    accent-color: #15d147;
 }
